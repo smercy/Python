@@ -1,3 +1,3 @@
 # python
-# This is a learning environment. ALL codes in this repo are considered leanrning materialand should not be used in production environment. 
+# This is a learning environment. Codes or scripts in this repo is not meant to be used in production system. 
 
