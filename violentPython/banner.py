@@ -13,8 +13,8 @@ def retBanner(ip, port):
 
 
 def main():
-    ip1 = '172.16.133.124'
-    ip2 = '172.16.133.1'
+    ip1 = '172.16.133.1'
+    ip2 = '172.16.133.124'
     port = 21
 
     banner1 = retBanner(ip1, port)
