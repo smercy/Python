@@ -1,5 +1,4 @@
 # variables and type
-
 port = 21
 print(type(port))
 
@@ -41,9 +40,17 @@ print(portList)
 print(len(portList))
 
 # dictionary
-
+# create a dictionary and populate with values
 service = {'ftp': 21, 'ssh': 22, 'smtp': 25, 'http': 80}
 
+# list all keys in a dictionary
 print(service.keys())
+
+# list the entire items in the dictionary
 print(service.items())
+
+# check whether a key is contained in the dictionary
 print('ftp' in service)
+
+# find the value of a specific key
+print(service['ftp'])
