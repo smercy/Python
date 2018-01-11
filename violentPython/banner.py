@@ -11,10 +11,10 @@ def retBanner(ip, port):
     except(Exception) as e:
         print(str(e))
 
-        
+
 def main():
-    ip1 = 172.16.133.124
-    ip1 = 172.16.133.1
+    ip1 = '172.16.133.124'
+    ip2 = '172.16.133.1'
     port = 21
 
     banner1 = retBanner(ip1, port)
