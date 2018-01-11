@@ -12,18 +12,23 @@ def retBanner(ip, port):
         print(str(e))
 
 
+def checkVulns(banner):
+    if "(vsFTPd 2.3.4)" in banner:
+        print("[+] vsFTPd FTP server vulnerable")
+    elif '3COM 3CDaemon FTP Server Version 2.0' in banner:
+        print("[+] 3COM 3CDaemon FTP Server vulnerable")
+    else:
+        print("[-] FTP Server is not vulnerable")
+
+
 def main():
-    ip1 = '172.16.133.1'
-    ip2 = '172.16.133.124'
+    ip = '172.16.133.124'
     port = 21
 
-    banner1 = retBanner(ip1, port)
-    if banner1:
-        print("[+]" + ip1 + ":" + banner1)
-
-    banner2 = retBanner(ip2, port)
-    if banner2:
-        print("[+]" + ip2 + ":" + banner2)
+    banner = retBanner(ip, port)
+    if banner:
+        print("[+]" + ip + ":" + banner.strip('\n'))
+        checkVulns(banner)
 
 
 if __name__ == '__main__':
