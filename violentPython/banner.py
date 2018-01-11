@@ -23,7 +23,7 @@ def main():
 
     banner2 = retBanner(ip2, port)
     if banner2:
-        print("[+]" + ip2 + ":" + banner1)
+        print("[+]" + ip2 + ":" + banner2)
 
 
 if __name__ == '__main__':
