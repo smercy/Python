@@ -1,3 +1,8 @@
+"""
+Created on Thursday, Jan 11th 2018
+@author: smercy
+"""
+
 # Networking
 
 import socket
