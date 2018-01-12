@@ -1,3 +1,8 @@
+"""
+Created on Thursday, Jan 11th 2018
+@author: smercy
+"""
+
 # print(1337/0)
 # ZeroDivisionError: division by zero
 
