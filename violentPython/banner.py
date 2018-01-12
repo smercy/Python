@@ -1,3 +1,9 @@
+"""
+Created on Thursday, Jan 11th 2018
+
+@author: smercy
+"""
+
 import socket
 import os
 import sys
