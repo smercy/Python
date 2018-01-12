@@ -1,3 +1,7 @@
+"""
+Created on Thursday, Jan 11th 2018
+@author: smercy
+"""
 # Networking
 
 import socket
@@ -13,5 +17,5 @@ except(Exception) as e:
 
 print(s.recv(1024))
 
-# Stephens-MBP:violentPython stephenmercy$ python3 socketConnetWerrorHandling.py
+
 # b'220 (vsFTPd 2.3.4)\r\n'
