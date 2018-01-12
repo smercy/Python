@@ -1,3 +1,8 @@
+"""
+Created on Thursday, Jan 11th 2018
+@author: smercy
+"""
+
 (vsFTPd 2.3.4)
 3Com 3CDaemon FTP Server Version 2.0
 Ability Server 2.34
