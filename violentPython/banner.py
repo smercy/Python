@@ -36,6 +36,7 @@ def main():
         if not os.path.isfile(fileName):
             print("[-] " + fileName + "Does not exist")
             exit(0)
+<<<<<<< HEAD
             if not os.access(fileName, os.R_OK):
                 print("[-] " + fileName + "Access denied")
                 exit(0)
@@ -52,6 +53,23 @@ def main():
             if banner:
                 print("[+]" + ip + ":" + banner.strip('\n'))
                 checkVulns(banner, fileName)
+=======
+        if not os.access(fileName, os.R_OK):
+            print("[-] " + fileName + "Access denied")
+            exit(0)
+    else:
+        print("[-] Usage: " + str(sys.argv[0]) + "<vulnerabilies fileName>")
+        exit(0)
+
+        portList = [21]
+        for x in range(124, 125):
+            ip = '172.16.133.' + str(x)
+            for port in portList:
+                banner = retBanner(ip, port)
+                if banner:
+                    print("[+]" + ip + ":" + banner.strip('\n'))
+                    checkVulns(banner, fileName)
+>>>>>>> ea9e54d721b7544aa9dd45efacf6d509e7382bf5
 
 
 if __name__ == '__main__':
