@@ -42,16 +42,17 @@ def main():
     else:
         print("[-] Usage: " + str(sys.argv[0]) + "<vulnerabilies fileName>")
         exit(0)
+        print("test 1")
 
-        portList = [21]
-        for x in range(124, 125):
-            ip = '172.16.133.' + str(x)
-            for port in portList:
-                banner = retBanner(ip, port)
-                if banner:
-                    print("[+]" + ip + ":" + banner.strip('\n'))
-                    checkVulns(banner, fileName)
+    portList = [21]
+    for x in range(124, 125):
+        ip = '172.16.133.' + str(x)
+        for port in portList:
+            banner = retBanner(ip, port)
+            if banner:
+                print("[+]" + ip + ":" + banner.strip('\n'))
+                checkVulns(banner, fileName)
 
-                    
+    print("test 2")            
 if __name__ == '__main__':
     main()
