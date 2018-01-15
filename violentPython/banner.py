@@ -1,5 +1,5 @@
 """
-Created on Thursday, Jan 11th 2018
+Created on Jan 11th 2018
 
 @author: smercy
 """
@@ -39,12 +39,12 @@ def main():
             if not os.access(fileName, os.R_OK):
                 print("[-] " + fileName + "Access denied")
                 exit(0)
-        else:
-            print("[-] Usage: " + str(sys.argv[0]) + "<vulnerable fileName>")
+    else:
+        print("[-] Usage: " + str(sys.argv[0]) + "<vulnerable fileName>")
 
         print("[+] Reading vulnerabilities from " + fileName)
 
-    portList = [21]
+    portList = [21, 22, 25, 80, 110, 443]
     for x in range(124, 125):
         ip = '172.16.133.' + str(x)
         for port in portList:
