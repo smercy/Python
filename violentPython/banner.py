@@ -42,7 +42,6 @@ def main():
     else:
         print("[-] Usage: " + str(sys.argv[0]) + "<vulnerabilies fileName>")
         exit(0)
-        print("test 1")
 
     portList = [21]
     for x in range(124, 125):
@@ -53,6 +52,5 @@ def main():
                 print("[+]" + ip + ":" + banner.strip('\n'))
                 checkVulns(banner, fileName)
 
-    print("test 2")            
 if __name__ == '__main__':
     main()
