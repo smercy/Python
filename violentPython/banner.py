@@ -1,5 +1,5 @@
 """
-Created on Thursday, Jan 11th 2018
+Created on Jan 11th 2018
 
 @author: smercy
 """
@@ -36,13 +36,12 @@ def main():
         if not os.path.isfile(fileName):
             print("[-] " + fileName + "Does not exist")
             exit(0)
-            if not os.access(fileName, os.R_OK):
-                print("[-] " + fileName + "Access denied")
-                exit(0)
-        else:
-            print("[-] Usage: " + str(sys.argv[0]) + "<vulnerable fileName>")
-
-        print("[+] Reading vulnerabilities from " + fileName)
+        if not os.access(fileName, os.R_OK):
+            print("[-] " + fileName + "Access denied")
+            exit(0)
+    else:
+        print("[-] Usage: " + str(sys.argv[0]) + "<vulnerabilies fileName>")
+        exit(0)
 
     portList = [21]
     for x in range(124, 125):
@@ -52,7 +51,6 @@ def main():
             if banner:
                 print("[+]" + ip + ":" + banner.strip('\n'))
                 checkVulns(banner, fileName)
-
 
 if __name__ == '__main__':
     main()
