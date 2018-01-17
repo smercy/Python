@@ -43,14 +43,12 @@ def main():
         print("[-] Usage: " + str(sys.argv[0]) + "<vulnerabilies fileName>")
         exit(0)
 
-    portList = [21]
-    for x in range(124, 125):
-        ip = '172.16.133.' + str(x)
-        for port in portList:
-            banner = retBanner(ip, port)
-            if banner:
-                print("[+]" + ip + ":" + banner.strip('\n'))
-                checkVulns(banner, fileName)
+    port = 22
+    ip = '192.168.2.5'
+    banner = retBanner(ip, port)
+    if banner:
+        print("[+]" + ip + ":" + banner.strip('\n'))
+        checkVulns(banner, fileName)
 
 if __name__ == '__main__':
     main()
