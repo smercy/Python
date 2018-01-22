@@ -5,8 +5,9 @@ Created on Jan 19th 2018
 """
 
 import argparse
-import socket
 from socket import *
+from threading import *
+screenLock = Semaphore(value=1)
 
 
 def connScan(tgtHost, tgtPort):
@@ -15,11 +16,15 @@ def connScan(tgtHost, tgtPort):
         connSkt.connect((tgtHost, int(tgtPort)))
         connSkt.send('ViolentPython\r\n')
         results = connSkt.recv(1000)
-        print("[+]{}tcp open".format(tgtPort))
+        screenLock.acquire()
+        print("[+]{}tcp open: ".format(tgtPort))
         print("[+]" + str(results))
-        connSkt.close()
     except Exception:
-        print("[-]{}tcp closed".format(tgtPort))
+        screenLock.acquire()
+        print("[-]{}tcp closed: ".format(tgtPort))
+    finally:
+        screenLock.release()
+        connSkt.close()
 
 
 def portScan(tgtHost, tgtPorts):
@@ -35,13 +40,14 @@ def portScan(tgtHost, tgtPorts):
         print("\n[+] Scan results for:" + tgtIP)
     setdefaulttimeout(1)
     for tgtPort in tgtPorts:
-        connScan(tgtHost, tgtPort)
+        t = Thread(target=connScan, args=(tgtHost, tgtPort))
+        t.start()
 
 
 def main():
     parser = argparse.ArgumentParser(description="specify the host and a port")
-    parser.add_argument("-H", dest="tgtHost", help='specify target host')
-    parser.add_argument("-p", dest='tgtPort', help='specify target port')
+    parser.add_argument("tgtHost", help='specify target host')
+    parser.add_argument("tgtPort", help='specify target port')
     args = parser.parse_args()
     tgtHost = args.tgtHost
     tgtPorts = args.tgtPort.split(',')
