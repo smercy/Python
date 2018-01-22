@@ -4,7 +4,7 @@ Created on Jan 19th 2018
 @author: smercy
 """
 
-import optparse
+import argparse
 import socket
 from socket import *
 
@@ -40,7 +40,7 @@ def portScan(tgtHost, tgtPorts):
 
 
 def main():
-    parser = optparse.OptionParser('usage%prog -H <host> -p <port>')
+    parser = argparse.ArgumentParser('usage%prog -H <host> -p <port>')
     parser.add_option('-H', dest='tgtHost', type='string', help='specify host')
     parser.add_option('-p', dest='tgtPort', type='int', help='specify port')
     (options, args) = parser.parse_args()
