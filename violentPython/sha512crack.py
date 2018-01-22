@@ -25,7 +25,7 @@ def main():
     for line in passFile.readlines():
         if ":" in line:
             user = line.split(':')[0]
-            cryptPass = line.split(':')[1].strip(' ')
+            cryptPass = line.split(':')[1]
             print("[*] Cracking Password for: " + user)
             testPass(cryptPass)
 

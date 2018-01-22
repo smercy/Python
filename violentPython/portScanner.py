@@ -12,7 +12,7 @@ from socket import *
 def connScan(tgtHost, tgtPort):
     try:
         connSkt = socket(AF_INET, SOCK_STREAM)
-        connSkt.connect((tgtHost, tgtPort))
+        connSkt.connect((tgtHost, int(tgtPort)))
         connSkt.send('ViolentPython\r\n')
         results = connSkt.recv(1000)
         print("[+]{}tcp open".format(tgtPort))
@@ -35,18 +35,16 @@ def portScan(tgtHost, tgtPorts):
         print("\n[+] Scan results for:" + tgtIP)
     setdefaulttimeout(1)
     for tgtPort in tgtPorts:
-        print("Scanning ports" + tgtPort)
-        connScan(tgtHost, int(tgtPort))
+        connScan(tgtHost, tgtPort)
 
 
 def main():
     parser = argparse.ArgumentParser(description="specify the host and a port")
-    parser.add_argument("tgtHost", help='specify target host')
-    parser.add_argument("tgtPort", type=int, help='specify target port')
+    parser.add_argument("-H", dest="tgtHost", help='specify target host')
+    parser.add_argument("-p", dest='tgtPort', help='specify target port')
     args = parser.parse_args()
-    print("[+] scanning host {} on port # {}".format(args.tgtHost, args.tgtPort))
     tgtHost = args.tgtHost
-    tgtPorts = str(args.tgtPort).split(' , ')
+    tgtPorts = args.tgtPort.split(',')
     if (tgtHost is None) | (tgtPorts[0] is None):
         print("[-] You must specify a target host and port[s]")
         exit(0)
