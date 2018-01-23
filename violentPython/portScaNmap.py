@@ -9,12 +9,11 @@ import nmap
 
 
 def nmapScan(tgtHost, tgtPort):
-    # print(tgtHost, tgtPort)
-    nmScan = nmap.PortScanner()
-    print(tgtHost, tgtPort)
-    nmScan.scan(tgtHost, tgtPort)
-    results = nmScan[tgtHost]['tcp'][21]['state']
-    print("[*] {} tcp {} {}".format(tgtHost, tgtPort, results))
+    nm = nmap.PortScanner()
+    nm.scan(tgtHost, tgtPort)
+    type(tgtPort)
+    portstatus = nm[tgtHost]['tcp'][int(tgtPort)]['state']
+    print("[*] {} tcp port {} is {}".format(tgtHost, tgtPort, portstatus))
 
 
 def main():
@@ -24,13 +23,13 @@ def main():
     args = parser.parse_args()
     tgtHost = args.tgtHost
     tgtPort = args.tgtPort
-    tgtPorts = str(tgtPort).split(', ')
+    tgtPorts = str(tgtPort).split(',')
     print("Arguments test 1: " + tgtHost, tgtPort)
     if(tgtHost is None) | (tgtPorts[0] is None):
         print(parser.usage)
         exit(0)
     for tgtPort in tgtPorts:
-        print(tgtHost)
+        print(tgtPort)
         nmapScan(tgtHost, tgtPort)
 
 
