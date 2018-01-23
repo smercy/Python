@@ -1,6 +1,5 @@
 """
 Created on Jan 22nd 2018
-
 @author: smercy
 """
 
@@ -9,11 +8,11 @@ import nmap
 
 
 def nmapScan(tgtHost, tgtPort):
-    print(tgtHost, tgtPort)
     nm = nmap.PortScanner()
     nm.scan(tgtHost, tgtPort)
-    print(nm[tgtHost]['tcp'][int(tgtPort)]['state'])
-    # print("[*] {} tcp port {} is {}".format(tgtHost, tgtPort, portstatus))
+    type(tgtPort)
+    portstatus = nm[tgtHost]['tcp'][int(tgtPort)]['state']
+    print("[*] {} tcp port {} is {}".format(tgtHost, tgtPort, portstatus))
 
 
 def main():
@@ -24,11 +23,12 @@ def main():
     tgtHost = args.tgtHost
     tgtPort = args.tgtPort
     tgtPorts = str(tgtPort).split(',')
+    print("Arguments test 1: " + tgtHost, tgtPort)
     if(tgtHost is None) | (tgtPorts[0] is None):
         print(parser.usage)
         exit(0)
-    # setdefaulttimeout(1)
     for tgtPort in tgtPorts:
+        print(tgtPort)
         nmapScan(tgtHost, tgtPort)
 
 
