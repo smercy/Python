@@ -6,6 +6,8 @@ Created on Jan 22nd 2018
 
 import argparse
 import nmap
+from threading import *
+screenLock = Semaphore(value=1)
 
 
 def nmapScan(tgtHost, tgtPort):
@@ -13,8 +15,11 @@ def nmapScan(tgtHost, tgtPort):
     nm.scan(tgtHost, tgtPort)
     type(tgtPort)
     portstatus = nm[tgtHost]['tcp'][int(tgtPort)]['state']
+    screenLock.acquire()
     print("[*] {} tcp port {} is {}".format(tgtHost, tgtPort, portstatus))
-
+    screenLock.release()
+    nmapScan.close()
+    
 
 def main():
     parser = argparse.ArgumentParser('usage%prog')
@@ -28,9 +33,12 @@ def main():
     if(tgtHost is None) | (tgtPorts[0] is None):
         print(parser.usage)
         exit(0)
+    # setdefaulttimeout(1)
     for tgtPort in tgtPorts:
-        print(tgtPort)
-        nmapScan(tgtHost, tgtPort)
+        t = Thread(target=nmapScan, args=(tgtHost, tgtPort))
+        t.start()
+        # print(tgtPort)
+        # nmapScan(tgtHost, tgtPort)
 
 
 if __name__ == '__main__':
