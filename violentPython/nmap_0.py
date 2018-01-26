@@ -10,7 +10,6 @@ import nmap
 def nmapScan(tgtHost, tgtPort):
     nm = nmap.PortScanner()
     nm.scan(tgtHost, tgtPort)
-    type(tgtPort)
     portstatus = nm[tgtHost]['tcp'][int(tgtPort)]['state']
     print("[*] {} tcp port {} is {}".format(tgtHost, tgtPort, portstatus))
 
@@ -23,12 +22,10 @@ def main():
     tgtHost = args.tgtHost
     tgtPort = args.tgtPort
     tgtPorts = str(tgtPort).split(',')
-    print("Arguments test 1: " + tgtHost, tgtPort)
     if(tgtHost is None) | (tgtPorts[0] is None):
         print(parser.usage)
         exit(0)
     for tgtPort in tgtPorts:
-        print(tgtPort)
         nmapScan(tgtHost, tgtPort)
 
 
